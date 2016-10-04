@@ -2,6 +2,9 @@ require 'sinatra'
 require 'json'
 require 'redis'
 
+set :logging, true
+set :environment, :production
+
 redis = Redis.new
 
 post "/" do
