@@ -17,5 +17,11 @@ end
 
 get "/" do
   content_type :json
-  redis.get('instructions-latest')
+  power_on = JSON.parse(redis.get('instructions-latest'))['power_on']
+  if power_on == '1'
+    redis.get('instructions-latest')
+  else
+    {power_on: 0, direction: 0, power: 0}.to_json
+  end
+  
 end
